@@ -20,6 +20,13 @@ So it needs to webkit2png command.
 ## About webkit2png
 
 In my case, webkit2png command doesn't work.
+I got this error.
+
+```
+Python[16938:2657011] App Transport Security has blocked a cleartext HTTP (http://) resource load since it is insecure. Temporary exceptions can be configured via your app's Info.plist file.
+ ... something went wrong: The resource could not be loaded because the App Transport Security policy requires the use of a secure connection.
+```
+
 So I tried this one.
 
 [https://github.com/bendalton/webkit2png/commit/9a96ac8977c386a84edb674ca1518e90452cee88](https://github.com/bendalton/webkit2png/commit/9a96ac8977c386a84edb674ca1518e90452cee88)
