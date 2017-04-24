@@ -3,15 +3,12 @@
 
 import time
 from selenium import webdriver
-import re
 import os
 
 if __name__ == '__main__':
     try:
         print('Input search word:', end='')
-        # input yukihirai0505
         search_word = input()
-
         browser = webdriver.Chrome('./chromedriver')
         browser.get('http://www.google.com')
         time.sleep(1)
@@ -20,10 +17,19 @@ if __name__ == '__main__':
         search_input.submit()
         time.sleep(1)
         print(browser.title)
-        anchor_link = browser.find_element_by_link_text('yukihirai0505 - Qiita')
+        # Get google search result
+        search_result = browser.find_element_by_id('search')
+        anchor_links = [a_tag for a_tag in search_result.find_elements_by_tag_name('a') if a_tag.text]
         time.sleep(1)
-        print(anchor_link.click())
+        # Print all search result in first page
+        for idx, val in enumerate(anchor_links):
+            print("idx: %d val: %s" % (idx, val.text))
         print(browser.title)
+        # Click first link
+        first_link = anchor_links[0]
+        first_link.click()
+        time.sleep(1)
+        # Get current page screen shot
         os.system('webkit2png --ignore-ssl-check -TF %s' % browser.current_url)
     finally:
         print('...END...')
